@@ -35,7 +35,6 @@ export default {
   components: {ProductItem},
   head() {
     return {
-
       meta: [
         {
           hid: 'description',
@@ -56,7 +55,6 @@ export default {
         error:null
       };
     } catch (err) {
-      console.error(err)
       return {
         products: [],
         showAlert: true,
@@ -64,29 +62,5 @@ export default {
       }
     }
   },
-  // async fetch() {
-  //   console.log(222);
-  //   let products = await this.$axios.$get('https://demo.spreecommerce.org/api/v2/storefront/products')
-  //
-  //   console.log(products);
-  // },
-  // methods:{
-  //   async fetchInitData(){
-  //     console.log(1);
-  //     // await this.$axios.get('https://demo.spreecommerce.org/api/v2/storefront/products')
-  //     //   .then(res => {
-  //     //     this.products = res.data.data;
-  //     //     this.meta = res.data.meta;
-  //     //     this.links = res.data.links;
-  //     //   }).catch(err => {
-  //     //     console.log(2);
-  //     //     console.log(err);
-  //     // });
-  //   }
-  // },
-  // created() {
-  //   this.fetchInitData()
-  //   this.loading=false
-  // }
 }
 </script>
