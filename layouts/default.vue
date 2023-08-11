@@ -9,17 +9,28 @@
     >
       <v-list>
         <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
+          :to="'/'"
           router
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>mdi-apps</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>Products List</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          :to="'/checkout'"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-shopping</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="d-flex justify-space-between align-center">Cart<v-chip>{{basket.length}}</v-chip></v-list-item-title>
+
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -38,52 +49,34 @@
       </v-container>
     </v-main>
     <v-snackbar
-      top v-model="show" :color="color" :timeout='timeout'
+      top v-model="snackbar_show" :color="snackbar.color" :timeout='timeout'
     >
-      {{ message }}
+      {{ snackbar.message }}
     </v-snackbar>
   </v-app>
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex';
 export default {
   name: 'DefaultLayout',
   data () {
     return {
-      show: false,
-      message: '',
-      color: '',
-      timeout:-1,
+      timeout:3000,
       clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Products List',
-          to: '/'
-        },
-        {
-          icon: 'mdi-shopping',
-          title: 'Cart',
-          to: '/checkout'
-        }
-      ],
+      drawer: true,
       miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Shop'
+      title: 'Shop',
+      snackbar_show:false,
     }
   },
-  created () {
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type === 'showMessage') {
-        this.message = state.snackbar.content;
-        this.color = state.snackbar.color;
-        this.timeout = state.snackbar.timeout;
-        this.show = true;
-      }
-    })
+  computed:{
+    ...mapState(['snackbar','basket'])
+  },
+  watch:{
+    snackbar(){
+      this.snackbar_show = this.snackbar.show;
+    }
   }
 }
 </script>

@@ -1,18 +1,15 @@
 export const state = () => ({
   basket: [],
   snackbar: {
-    content: '',
+    message: '',
     color: '',
-    timeout: ''
+    show: false,
   },
-
 });
 
 export const mutations = {
   showMessage(state, payload) {
-    state.snackbar.content = payload.content;
-    state.snackbar.color = payload.color;
-    state.snackbar.timeout = payload.timeout;
+    state.snackbar=payload;
   },
   addToBasket(state, payload) {
     state.basket.push(payload);
@@ -36,5 +33,8 @@ export const actions = {
   },
   setBasket({commit}, payload) {
     commit('setBasket', payload);
+  },
+  showMessage({commit}, payload) {
+    commit('showMessage', payload);
   },
 };

@@ -33,12 +33,11 @@ export default {
     product: Object
   },
   methods:{
-    async addToCart(item){
-      let message = 'product added';
-      await this.$snackbar.showMessage({ content: message, color: 'success' });
-      this.addToBasket(item)
+    addToCart(item){
+      this.showMessage({ message: 'product added', color: 'success',show:true });
+      this.addToBasket(item);
     },
-    ...mapActions(['addToBasket'])
+    ...mapActions(['addToBasket','showMessage'])
   },
   computed:{
 
