@@ -29,7 +29,7 @@
             <td>{{ item.attributes.display_price }}</td>
             <td>
               <div class="pa-2">
-                <v-btn @click="DeleteFromBasket(item.id)" color="error" small outlined>
+                <v-btn @click="deletebasket(item.id)" color="error" small outlined>
                   delete cart
                 </v-btn>
               </div>
@@ -76,10 +76,14 @@ export default {
     }
   },
   methods: {
+    deletebasket(item_id){
+      this.showMessage({ message: 'product removed', color: 'warning',show:true });
+      this.DeleteFromBasket(item_id)
+    },
     getBasket(){
       this.setBasket(JSON.parse(sessionStorage.getItem('basket')))
     },
-    ...mapActions(['DeleteFromBasket','setBasket'])
+    ...mapActions(['DeleteFromBasket','setBasket','showMessage'])
   },
   mounted() {
     this.getBasket();
