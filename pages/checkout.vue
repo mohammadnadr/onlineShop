@@ -46,10 +46,6 @@
           </tbody>
         </v-simple-table>
       </v-col>
-
-      <!--      <v-col cols="12" md="3" v-for="product in products" :key="product.id">-->
-      <!--        <ProductItem :product="product"/>-->
-      <!--      </v-col>-->
     </v-row>
   </v-container>
 </template>
@@ -70,9 +66,6 @@ export default {
         {text: 'remove', value: 'remove'},
 
       ],
-      products: [],
-      meta: null,
-      links: null,
     }
   },
   methods: {
