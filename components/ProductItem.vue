@@ -34,17 +34,8 @@ export default {
   },
   methods:{
     async addToCart(item){
-      this.showS(
-        'added',
-        {
-          title: 'success',
-          variant: 'primary',
-          solid: true,
-          autoHideDelay: 3000,
-          noCloseButton: true,
-          toaster: 'b-toaster-top-center'
-        },
-      )
+      let message = 'product added';
+      await this.$snackbar.showMessage({ content: message, color: 'success' });
       this.addToBasket(item)
     },
     ...mapActions(['addToBasket'])
