@@ -9,10 +9,10 @@ export const state = () => ({
 
 export const mutations = {
   showMessage(state, payload) {
-    state.snackbar = payload;
+    state.snackbar=payload;
   },
   addToBasket(state, payload) {
-    state.basket.push({...payload, count: 1});
+    state.basket.push(payload);
     sessionStorage.setItem('basket', JSON.stringify(state.basket))
   },
   DeleteFromBasket(state, payload) {
