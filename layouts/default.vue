@@ -37,7 +37,11 @@
         <Nuxt />
       </v-container>
     </v-main>
-
+    <v-snackbar
+      top v-model="show" :color="color" :timeout='timeout'
+    >
+      {{ message }}
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -46,6 +50,10 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
+      show: false,
+      message: '',
+      color: '',
+      timeout:-1,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -66,6 +74,16 @@ export default {
       rightDrawer: false,
       title: 'Shop'
     }
+  },
+  created () {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'showMessage') {
+        this.message = state.snackbar.content;
+        this.color = state.snackbar.color;
+        this.timeout = state.snackbar.timeout;
+        this.show = true;
+      }
+    })
   }
 }
 </script>
