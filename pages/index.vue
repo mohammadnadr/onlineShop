@@ -6,6 +6,18 @@
           Products List
         </h2>
       </v-col>
+      <v-col cols="12" v-if="showAlert">
+        <v-alert
+          border="right"
+          color="error"
+          dark
+        >
+          {{error}}
+          Access to XMLHttpRequest at 'https://demo.spreecommerce.org/api/v2/storefront/products' from origin
+          'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on
+          the requested resource.
+        </v-alert>
+      </v-col>
       <v-col cols="12" md="3" v-for="item in products" :key="item.id">
         <ProductItem :product="item"/>
       </v-col>
@@ -39,12 +51,16 @@ export default {
         throw err;
       });
       return {
-        products: res.data.data
+        products: res.data.data,
+        showAlert: false,
+        error:null
       };
     } catch (err) {
       console.error(err)
       return {
-        products: []
+        products: [],
+        showAlert: true,
+        error: err.message
       }
     }
   },
