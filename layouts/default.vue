@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapState} from 'vuex';
+import {mapActions, mapState} from 'vuex';
 export default {
   name: 'DefaultLayout',
   data () {
@@ -69,6 +69,15 @@ export default {
       title: 'Shop',
       snackbar_show:false,
     }
+  },
+  methods:{
+    getBasket(){
+      this.setBasket(JSON.parse(sessionStorage.getItem('basket')))
+    },
+    ...mapActions(['setBasket'])
+  },
+  mounted() {
+    this.getBasket();
   },
   computed:{
     ...mapState(['snackbar','basket'])
