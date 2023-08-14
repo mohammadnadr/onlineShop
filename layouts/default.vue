@@ -29,7 +29,7 @@
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title class="d-flex justify-space-between align-center">Cart<v-chip>{{basket.length ? basket.length : 0}}</v-chip></v-list-item-title>
+            <v-list-item-title class="d-flex justify-space-between align-center">Cart<v-chip v-if="basket && basket.length">{{basket.length}}</v-chip> <v-chip v-else>0</v-chip></v-list-item-title>
 
           </v-list-item-content>
         </v-list-item>
