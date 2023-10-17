@@ -16,7 +16,7 @@ export const mutations = {
     sessionStorage.setItem('basket', JSON.stringify(state.basket))
   },
   DeleteFromBasket(state, payload) {
-    state.basket = this.state.basket.filter(item => item.id !== payload)
+    state.basket = state.basket.filter(item => item.id !== payload)
     sessionStorage.setItem('basket', JSON.stringify(state.basket))
   },
   setBasket(state, payload) {

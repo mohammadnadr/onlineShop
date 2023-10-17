@@ -72,7 +72,7 @@ export default {
   },
   methods:{
     getBasket(){
-      this.setBasket(JSON.parse(sessionStorage.getItem('basket')))
+      this.setBasket(JSON.parse(sessionStorage.getItem('basket')) || [])
     },
     ...mapActions(['setBasket'])
   },
